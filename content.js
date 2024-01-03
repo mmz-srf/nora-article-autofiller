@@ -8,14 +8,20 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     const shortLead = document.getElementById('shortLead');
     const author = document.getElementById('author');
 
-    kicker.value = 'Das ist ein Kicker';
-    kicker.dispatchEvent(new Event('change', { bubbles: true }));
-    title.value = 'Das ist ein Titel';
-    title.dispatchEvent(new Event('change', { bubbles: true }));
-    shortLead.value = 'Das ist ein Shortlead';
-    shortLead.dispatchEvent(new Event('change', { bubbles: true }));
-    author.value = 'Benjamin Knecht';
-    author.dispatchEvent(new Event('change', { bubbles: true }));
+    const authors = ['Benjamin Knecht', 'Phillip Christen', 'Urban Etter', 'Pascal von Büren', 'Hasan Kryeziu'];
 
+    kicker.value = 'Das ist ein Kicker';
+    title.value = 'Das ist ein Titel';
+    shortLead.value = 'Das ist ein Shortlead';
+    author.value = authors[getRandomInt(authors.length)];
+
+    title.dispatchEvent(new Event('change', { bubbles: true }));
+    kicker.dispatchEvent(new Event('change', { bubbles: true }));
+    shortLead.dispatchEvent(new Event('change', { bubbles: true }));
+    author.dispatchEvent(new Event('change', { bubbles: true }));
   }
 });
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
