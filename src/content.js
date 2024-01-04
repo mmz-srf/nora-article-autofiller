@@ -8,8 +8,9 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
-function fill() {
-  console.log('Autofilling...');
+const fill = () =>  {
+
+  console.log('bin da 2');
 
   // TODO: Fill that damm select element!!!
   const kicker = document.getElementById('kicker');
