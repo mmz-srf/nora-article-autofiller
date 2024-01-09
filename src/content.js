@@ -38,6 +38,9 @@ const fill = async () => {
   const select = document.querySelector('[data-cy="edith-rubric-input"] .select-box__control');
   const testOptionIsAlreadyOpen = document.getElementById('react-select-5-option-0');
 
+  // Log the select element to debug
+  console.log('Select element:', select);
+
   if (testOptionIsAlreadyOpen) {
     console.log('Option is already open');
     return;
@@ -49,8 +52,11 @@ const fill = async () => {
     await dispatchMouseEvent(select, mouseDownEvent);
     await dispatchMouseEvent(select, mouseUpEvent);
 
+    //const option = document.getElementById('react-select-5-option-0');
+    const option = document.querySelector('.select-box__option');
 
-    const option = document.getElementById('react-select-5-option-0');
+  // Log the option element to debug
+  console.log('Option element:', option);
 
   if (!option) {
     console.log('No option found');
