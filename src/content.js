@@ -36,7 +36,7 @@ const fill = async () => {
   }
 
   const select = document.querySelector('[data-cy="edith-rubric-input"] .select-box__control');
-  const testOptionIsAlreadyOpen = document.getElementById('react-select-5-option-0');
+  const testOptionIsAlreadyOpen = document.querySelector('.select-box__option');
 
   console.log('Select element:', select);
 
