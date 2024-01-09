@@ -4,15 +4,25 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   }
 });
 
-const fill = () => {
-  console.log('bin da 2');
+const dispatchMouseEvent = (element, event) => {
+  return new Promise((resolve) => {
+    const eventListener = () => {
+      element.removeEventListener(event.type, eventListener);
+      resolve();
+    };
+    element.addEventListener(event.type, eventListener);
+    element.dispatchEvent(event);
+  });
+};
 
+const fill = async () => {
   const fields = {
     kicker: 'Das ist ein Kicker',
     title: 'Das ist ein Titel',
     shortLead: 'Das ist ein Shortlead',
     author: 'Benjamin Knecht',
   };
+
 
   for (const [fieldId, value] of Object.entries(fields)) {
     const field = document.getElementById(fieldId);
@@ -24,6 +34,37 @@ const fill = () => {
       field.dispatchEvent(changeEvent);
     }
   }
+
+  const select = document.querySelector('[data-cy="edith-rubric-input"] .select-box__control');
+  const testOptionIsAlreadyOpen = document.getElementById('react-select-5-option-0');
+
+  if (testOptionIsAlreadyOpen) {
+    console.log('Option is already open');
+    return;
+  }
+
+    const mouseDownEvent = new MouseEvent('mousedown', { bubbles: true, cancelable: true, view: window });
+    const mouseUpEvent = new MouseEvent('mouseup', { bubbles: true, cancelable: true, view: window });
+
+    await dispatchMouseEvent(select, mouseDownEvent);
+    await dispatchMouseEvent(select, mouseUpEvent);
+
+
+    const option = document.getElementById('react-select-5-option-0');
+
+  if (!option) {
+    console.log('No option found');
+    return;
+  }
+
+  const mouseDownEvent2 = new MouseEvent('mousedown', { bubbles: true, cancelable: true, view: window });
+  const mouseUpEvent2 = new MouseEvent('mouseup', { bubbles: true, cancelable: true, view: window });
+
+  await dispatchMouseEvent(option, mouseDownEvent2);
+  await dispatchMouseEvent(option, mouseUpEvent2);
+
+  // Click on foo (if needed)
+  option.click();
 };
 
 document.addEventListener('keydown', function(event) {
