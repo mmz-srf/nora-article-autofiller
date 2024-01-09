@@ -38,7 +38,6 @@ const fill = async () => {
   const select = document.querySelector('[data-cy="edith-rubric-input"] .select-box__control');
   const testOptionIsAlreadyOpen = document.getElementById('react-select-5-option-0');
 
-  // Log the select element to debug
   console.log('Select element:', select);
 
   if (testOptionIsAlreadyOpen) {
@@ -55,7 +54,6 @@ const fill = async () => {
     //const option = document.getElementById('react-select-5-option-0');
     const option = document.querySelector('.select-box__option');
 
-  // Log the option element to debug
   console.log('Option element:', option);
 
   if (!option) {
@@ -69,7 +67,6 @@ const fill = async () => {
   await dispatchMouseEvent(option, mouseDownEvent2);
   await dispatchMouseEvent(option, mouseUpEvent2);
 
-  // Click on foo (if needed)
   option.click();
 };
 
