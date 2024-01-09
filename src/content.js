@@ -4,32 +4,27 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
   }
 });
 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * max);
-}
-
-const fill = () =>  {
-
+const fill = () => {
   console.log('bin da 2');
 
-  // TODO: Fill that damm select element!!!
-  const kicker = document.getElementById('kicker');
-  const title = document.getElementById('title');
-  const shortLead = document.getElementById('shortLead');
-  const author = document.getElementById('author');
+  const fields = {
+    kicker: 'Das ist ein Kicker',
+    title: 'Das ist ein Titel',
+    shortLead: 'Das ist ein Shortlead',
+    author: 'Benjamin Knecht',
+  };
 
-  const authors = ['Benjamin Knecht', 'Phillip Christen', 'Urban Etter', 'Pascal von Büren', 'Hasan Kryeziu'];
+  for (const [fieldId, value] of Object.entries(fields)) {
+    const field = document.getElementById(fieldId);
+    if (field) {
+      field.value = value;
 
-  kicker.value = 'Das ist ein Kicker';
-  title.value = 'Das ist ein Titel';
-  shortLead.value = 'Das ist ein Shortlead';
-  author.value = authors[getRandomInt(authors.length)];
-
-  title.dispatchEvent(new Event('change', { bubbles: true }));
-  kicker.dispatchEvent(new Event('change', { bubbles: true }));
-  shortLead.dispatchEvent(new Event('change', { bubbles: true }));
-  author.dispatchEvent(new Event('change', { bubbles: true }));
-}
+      // Dispatch a change event to notify React components of the change
+      const changeEvent = new Event('change', { bubbles: true, cancelable: true });
+      field.dispatchEvent(changeEvent);
+    }
+  }
+};
 
 document.addEventListener('keydown', function(event) {
   if (event.metaKey && event.key === 'b') {
