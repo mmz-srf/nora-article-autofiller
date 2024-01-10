@@ -13,7 +13,8 @@
   "content_scripts": [
     {
       "matches": [
-        "*://localhost:*/*"
+        "*://localhost:*/*",
+        "*://nora.dev.srfdigital.ch/*"
       ],
       "js": ["content.js"]
     }
